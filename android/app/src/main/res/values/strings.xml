@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Arabyads</string>
+    <string name="splashscreen">SplashScreen</string>
+    <string name="todo">TODO</string>
+</resources>

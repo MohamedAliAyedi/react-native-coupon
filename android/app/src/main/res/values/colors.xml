@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_color">#FCFCFC</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="app_color">#FF3399</color>
+    <color name="app_color_twenty_transparent">#33f9c507</color>
+    <color name="app_brown">#000000</color>
+    <color name="colorBorderGray">#D0D0D0</color>
+    <color name="text_green">#A59427</color>
+    <color name="greyDSixColor">#D6D6D6</color>
+    <color name="welcomeAreaColor">#F4F4F4</color>
+    <color name="unselected_grey_color">#E1E1E1</color>
+    <color name="text_grey">#BCBCBC</color>
+    <color name="background">#FCFCFC</color>
+
+    <color name="status_bar_color">#FF3399</color>
+
+    <color name="new_order">#0C9307</color>
+    <color name="affected_order">#B1B7B1</color>
+    <color name="delivering_order">#DDC128</color>
+    <color name="delivered_order">#0C9307</color>
+    <color name="grey_eb">#EBEBEB</color>
+    <color name="red">#FC2248</color>
+    <color name="green">#0C9307</color>
+
+
+    <color name="colorLogoutGray">#F4F4F4</color>
+    <color name="colorRed2">#F78886</color>
+    <color name="colorFillGray3">#F3F3F3</color>
+</resources>
