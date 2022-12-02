@@ -76,6 +76,7 @@ export default StyleSheet.create({
       fontWeight: '600',
       paddingHorizontal: 10,
       fontSize: fontValue(16),
+      fontFamily: FONT.semiBold,
       color: COLORS.black,
   },
   viewTextInput: {
@@ -102,6 +103,7 @@ export default StyleSheet.create({
   IconInfo: {
     marginBottom: widthPercentageToDP(2.5),
     width: '10%',
+    fontFamily: FONT.bold,
   },
 
   ViewCancel: {
@@ -116,6 +118,7 @@ export default StyleSheet.create({
   },
   defaultText: {
     color: COLORS.blueCell,
+    fontFamily: FONT.bold,
     fontWeight: '700',
   },
   hairline: {

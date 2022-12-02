@@ -1,22 +1,7 @@
-import {
-  USER,
-  USER_LOGIN_ACTION,
-  USER_LOGOUT_ACTION,
-  USER_UPDATE_PROFILE_PHOTO,
-} from './user';
 import {LOADER, LOADER_STOP_ACTION, LOADER_START_ACTION} from './loader';
-// To reducers
-const ACTIONS = {
-  USER,
-  LOADER,
-};
+
+const ACTIONS = {LOADER};
+
 export default ACTIONS;
 
-// To code dispatch()
-export {
-  USER_LOGIN_ACTION,
-  USER_LOGOUT_ACTION,
-  USER_UPDATE_PROFILE_PHOTO,
-  LOADER_START_ACTION,
-  LOADER_STOP_ACTION,
-};
+export {LOADER_START_ACTION, LOADER_STOP_ACTION};
