@@ -7,12 +7,21 @@ import {
   Register,
   VerifictionCode
 } from '../../../screens';
+import {useSelector} from 'react-redux';
+import {Loader} from '../../../components';
+import SplashScreen from 'react-native-splash-screen';
 
 const Stack = createNativeStackNavigator();
 const StackNavigation = () => {
+  const loading = useSelector(state => state?.loader?.loading);
 
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      onReady={async () => {
+        await SplashScreen.hide();
+      }}
+    >
+      <Loader isVisible={loading} />
       <Stack.Navigator
         screenOptions={() => ({
           headerShown: false,

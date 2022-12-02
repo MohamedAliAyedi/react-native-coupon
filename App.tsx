@@ -9,7 +9,6 @@ import SplashScreen from 'react-native-splash-screen';
 import {useTranslation} from 'react-i18next';
 import {I18nManager} from 'react-native';
 import RNRestart from 'react-native-restart';
-//import ConfigPushNotification from './src/config/notifications/notif';
 moment.locale('en');
 
 const App = () => {
@@ -27,7 +26,6 @@ const App = () => {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-          {/*<ConfigPushNotification />*/}
           <Navigator />
       </PersistGate>
     </Provider>
