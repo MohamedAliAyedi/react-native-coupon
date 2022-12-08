@@ -2,7 +2,7 @@ import {BaseView, CustomText } from './shared';
 import Loader from './shared/loader/loader';
 import {HeaderBack} from './header';
 import {MainButton} from './button';
-import {UserCard, ProductCard, CategoriesCard} from './card';
+import {UserCard, ProductCard, CategoriesCard, StoreCard} from './card';
 export {
   CustomText,
   BaseView,
@@ -11,5 +11,6 @@ export {
   MainButton,
   UserCard,
   ProductCard,
-  CategoriesCard
+  CategoriesCard,
+  StoreCard
 };

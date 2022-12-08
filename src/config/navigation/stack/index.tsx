@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {MainPage, SignIn, Register, VerifictionCode} from '../../../screens';
+import {MainPage, SearchPage, SignIn, Register, VerifictionCode} from '../../../screens';
 import {useSelector} from 'react-redux';
 import {Loader} from '../../../components';
 import SplashScreen from 'react-native-splash-screen';
@@ -23,6 +23,7 @@ const StackNavigation = () => {
         })}
         initialRouteName={'signIn'}>
         <Stack.Screen name={'mainPage'} component={MainPage} />
+        <Stack.Screen name={'searchPage'} component={SearchPage} />
         <Stack.Screen name={'signIn'} component={SignIn} />
         <Stack.Screen name={'register'} component={Register} />
         <Stack.Screen name={'verifCode'} component={VerifictionCode} />
