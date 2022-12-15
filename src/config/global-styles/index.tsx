@@ -7,14 +7,12 @@ export const fontValue = (fontSize: any, standardScreenHeight = 736) => {
   const heightPercent = (fontSize * screenHeight) / standardScreenHeight;
   return PixelRatio.roundToNearestPixel(heightPercent);
 };
-export const widthPercentageToDP = widthPercent => {
-  // Convert string input to decimal number
+export const widthPercentageToDP = (widthPercent: any) => {
   const elemWidth = parseFloat(widthPercent);
   return PixelRatio.roundToNearestPixel((screenWidth * elemWidth) / 100);
 };
 
-export const heightPercentageToDP = heightPercent => {
-  // Convert string input to decimal number
+export const heightPercentageToDP = (heightPercent: any) => {
   const elemHeight = parseFloat(heightPercent);
   return PixelRatio.roundToNearestPixel((screenHeight * elemHeight) / 100);
 };

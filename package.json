@@ -84,6 +84,7 @@
     "react-native-splash-screen": "^3.2.0",
     "react-native-swiper-flatlist": "^3.0.15",
     "react-native-tab-view": "^3.1.1",
+    "react-native-text-gradient": "^0.1.7",
     "react-native-toast-message": "^2.1.5",
     "react-native-toast-with-button": "^0.0.2",
     "react-native-vector-icons": "^8.1.0",

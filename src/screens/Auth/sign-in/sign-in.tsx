@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -6,12 +6,10 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import * as Yup from 'yup';
 import styles from './style';
 import {useTranslation} from 'react-i18next';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {COLORS} from '../../../config/constants';
-import {useDispatch} from 'react-redux';
 import IconCancel from 'react-native-vector-icons/MaterialIcons';
 import {regexPhoneNumber} from '../../../config/utils';
 import {
@@ -21,22 +19,11 @@ import {
 } from '../../../config/global-styles';
 import {CustomText, MainButton} from '../../../components';
 
-const SignIn = ({navigation}) => {
-  const dispatch = useDispatch();
+const SignIn = ({navigation}: any) => {
   const {t} = useTranslation();
   const [login, setLogin] = useState({
     email: '',
     password: '',
-  });
-  const [error, setError] = useState(false);
-  const toastRef = useRef(null);
-
-  const isRTL = false;
-
-  const validationSchema = Yup.object().shape({
-    phone: Yup.string()
-      .required(t('phone') + ' ' + t('REQUIRED'))
-      .label('Phone'),
   });
   return (
     <>

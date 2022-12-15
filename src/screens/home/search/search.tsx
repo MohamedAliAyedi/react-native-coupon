@@ -7,7 +7,6 @@ import {
   FlatList,
   Platform,
   SafeAreaView,
-  Pressable,
 } from 'react-native';
 import {
   CategoriesCard,
@@ -15,6 +14,7 @@ import {
   ProductCard,
   UserCard,
   StoreCard,
+  HeaderBack,
 } from '../../../components';
 import styles from './style';
 import {
@@ -26,7 +26,7 @@ import {COLORS} from '../../../config/constants';
 import i18next from 'i18next';
 
 // @ts-ignore
-const MainPage = ({navigation}) => {
+const SearchPage = ({navigation}) => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
   const [itemChosed, setItemChosed] = React.useState<number>(0);
@@ -46,6 +46,18 @@ const MainPage = ({navigation}) => {
     {id: 3, title: 'Silk Maison', description: '6% cashback'},
     {id: 4, title: 'Muji', description: '1% cashback'},
     {id: 5, title: 'Muji', description: '4% cashback'},
+    {id: 6, title: 'Amazon', description: '2% cashback'},
+    {id: 7, title: 'Silk Maison', description: '2% cashback'},
+    {id: 8, title: 'Muji', description: '3% cashback'},
+    {id: 9, title: 'Silk Maison', description: '6% cashback'},
+    {id: 10, title: 'Muji', description: '1% cashback'},
+    {id: 11, title: 'Muji', description: '4% cashback'},
+    {id: 12, title: 'Amazon', description: '2% cashback'},
+    {id: 13, title: 'Silk Maison', description: '2% cashback'},
+    {id: 14, title: 'Muji', description: '3% cashback'},
+    {id: 15, title: 'Silk Maison', description: '6% cashback'},
+    {id: 16, title: 'Muji', description: '1% cashback'},
+    {id: 17, title: 'Muji', description: '4% cashback'},
   ]);
   const isRTL = i18next.language === 'ar';
 
@@ -70,11 +82,7 @@ const MainPage = ({navigation}) => {
     <SafeAreaProvider
       initialMetrics={initialWindowMetrics}
       style={styles().mainBody}>
-      <UserCard
-        fullname={'Dali Ayadi'}
-        description={'+216 27 313 347 | Tunisia'}
-        image={'https://avatars.githubusercontent.com/u/46815881?v=4'}
-      />
+      <HeaderBack title={t('Results (1200)')} noBack={false} />
       <ScrollView
         style={{
           height: '60%',
@@ -84,19 +92,6 @@ const MainPage = ({navigation}) => {
           alignSelf: 'center',
           alignContent: 'center',
         }}>
-        <Image
-          style={styles().imageSlider}
-          source={{
-            uri: 'https://www.webmonkey.com/wp-content/uploads/2020/07/purple-color-codes.webp',
-          }}
-        />
-        <CustomText type={'bold'} style={styles().title}>
-          {t('Featured')}
-        </CustomText>
-        <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
-          <ProductCard />
-          <ProductCard />
-        </View>
         <CustomText type={'bold'} style={styles().title}>
           {t('All Store')}
         </CustomText>
@@ -129,16 +124,8 @@ const MainPage = ({navigation}) => {
             keyExtractor={item => item?.id}
           />
         </SafeAreaView>
-        <Pressable
-          style={{marginBottom: 20, backgroundColor: 'red'}}
-          onPress={() => {
-            navigation.replace('searchPage');
-          }}>
-          
-          <CustomText>Load More</CustomText>
-        </Pressable>
       </ScrollView>
     </SafeAreaProvider>
   );
 };
-export default MainPage;
+export default SearchPage;

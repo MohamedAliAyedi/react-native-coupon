@@ -10,25 +10,25 @@ interface textProps {
   numberOfLines?: number;
   style?: any;
   type?: 'regular' | 'bold' | 'semiBold' | 'medium' | 'light' | 'black';
-  children?: string;
+  children?: any;
 }
 const CustomText = ({numberOfLines, style, type, children}: textProps) => {
   const checkType = () => {
     switch (type) {
       case 'regular':
-        return 'regular';
+        return FONT.regular;
       case 'bold':
-        return 'bold';
+        return FONT.bold;
       case 'semiBold':
-        return 'semiBold';
+        return FONT.semiBold;
       case 'medium':
-        return 'medium';
+        return FONT.medium;
       case 'light':
-        return 'light';
+        return FONT.light;
       case 'black':
-        return 'light';
+        return FONT.black;
       default:
-        return 'regular';
+        return FONT.regular;
     }
   };
   return (

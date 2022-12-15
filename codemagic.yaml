@@ -1,0 +1,26 @@
+workflows:
+    react-native:
+        name: React Native App ( White Label )
+        environment:
+            vars:
+                XCODE_WORKSPACE: "whiteLabel"
+                XCODE_SCHEME: "whiteLabel"
+            node: latest
+        scripts:
+            - npm install --force
+            - yarn
+            - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
+            - |
+                # build Android
+                cd android
+                chmod +x gradlew
+                ./gradlew assembleDebug
+            - |
+                # build iOS
+                cd ios
+                pod install
+                xcodebuild build -workspace "$XCODE_WORKSPACE.xcworkspace" -scheme "$XCODE_SCHEME" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+        artifacts:
+            - android/app/build/outputs/**/**/*.apk
+            - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+            - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
