@@ -17,14 +17,14 @@ Camion is using the React Native Framework.
 
 ## Global
 
-- [Git guidelines](https://gitlab.com/zc-mobile-projects/zc-mobile-development-wiki/-/blob/main/GIT/conventions.md)
-- [Code guidelines](https://gitlab.com/zc-mobile-projects/zc-mobile-development-wiki/-/blob/main/markdown/cheat-sheet.md)
+# Project react-native-coupon
+## Progress ...
+![ScreenShot](https://github.com/MohamedAliAyedi/react-native-coupon/Screenshot/Project_1.png)
+![ScreenShot](https://github.com/MohamedAliAyedi/react-native-coupon/Screenshot/Project_2.png)
 
-## This project
+## testing application APK 0.0.1
 
-- Stick to the [React native style guide](https://gitlab.com/zc-mobile-projects/zc-mobile-development-wiki/-/blob/main/markdown/cheat-sheet.md)
-- Create and extend reusable components. [See documentation](https://gitlab.com/zc-mobile-projects/zc-mobile-development-wiki/-/blob/main/markdown/cheat-sheet.md#component).
-- Use class selector(.js) to set css style.
+[Download APK](https://github.com/MohamedAliAyedi/react-native-coupon/Screenshot/app-test.apk "download")
 
 # 🔍 Repo Structure
 
@@ -172,8 +172,8 @@ It will create necessary configuration files to trigger a build on each commit.
 
 ## App center Access
 
-1. Ask for an **invite** to the Zedney Creative organization.
-2. After you receive the mail, **Sign in** to with your Zedney Creative google account.
+1. Ask for an **invite** to organization.
+2. After you receive the mail, **Sign in** to with your google account.
 3. Follow the instructions to install the app on your mobile phone.
 
 ### For iOS users
