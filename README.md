@@ -19,8 +19,8 @@ Camion is using the React Native Framework.
 
 # Project react-native-coupon
 ## Progress ...
-![ScreenShot](https://github.com/MohamedAliAyedi/react-native-coupon/Screenshot/Project_1.png)
-![ScreenShot](https://github.com/MohamedAliAyedi/react-native-coupon/Screenshot/Project_2.png)
+![ScreenShot](https://raw.githubusercontent.com/MohamedAliAyedi/react-native-coupon/main/Screenshot/Project_1.png)
+![ScreenShot](https://raw.githubusercontent.com/MohamedAliAyedi/react-native-coupon/main/Screenshot/Project_2.png)
 
 ## testing application APK 0.0.1
 
