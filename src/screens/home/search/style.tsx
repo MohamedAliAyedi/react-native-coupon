@@ -16,6 +16,14 @@ const styles = (fakeData?: any) =>
       alignItems: 'center',
       backgroundColor: COLORS.white,
     },
+    scrollingContaier: {
+      height: '60%',
+      width: '100%',
+      backgroundColor: COLORS.white,
+      padding: 10,
+      alignSelf: 'center',
+      alignContent: 'center',
+    },
     mainBody: {
       alignItems: 'center',
       backgroundColor: COLORS.white,
