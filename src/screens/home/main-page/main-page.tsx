@@ -1,5 +1,8 @@
-import React, {useRef} from 'react';
-import {useTranslation} from 'react-i18next';
+import React, { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+import { GetCategoriesHK } from '../../../services';
+import { GetBannerHK } from '../../../services';
+import { images } from '../../../config/constants';
 import {
   Image,
   ScrollView,
@@ -8,6 +11,7 @@ import {
   Platform,
   SafeAreaView,
   Pressable,
+  ActivityIndicator,
 } from 'react-native';
 import {
   CategoriesCard,
@@ -21,39 +25,31 @@ import {
   SafeAreaProvider,
   initialWindowMetrics,
 } from 'react-native-safe-area-context';
-import {useDispatch} from 'react-redux';
-import {COLORS} from '../../../config/constants';
+import { useDispatch } from 'react-redux';
 import i18next from 'i18next';
 
 // @ts-ignore
-const MainPage = ({navigation}) => {
-  const {t} = useTranslation();
+const MainPage = ({ navigation }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [itemChosed, setItemChosed] = React.useState<number>(0);
   const flatListRef = useRef<FlatList>(null);
   const [TEMP_DATA, setTEMP_DATA] = React.useState<any>([
-    {id: 0, name: 'All'},
-    {id: 1, name: 'Fashion'},
-    {id: 2, name: 'Health & Beauty'},
-    {id: 3, name: 'Electronics'},
-    {id: 4, name: 'House'},
-    {id: 5, name: 'Health & Beauty'},
+    { id: 0, name: 'All' },
+    { id: 1, name: 'Fashion' },
+    { id: 2, name: 'Health & Beauty' },
+    { id: 3, name: 'Electronics' },
+    { id: 4, name: 'House' },
+    { id: 5, name: 'Health & Beauty' },
   ]);
-  const [Stores, setStores] = React.useState<any>([
-    {id: 0, title: 'Amazon', description: '2% cashback'},
-    {id: 1, title: 'Silk Maison', description: '2% cashback'},
-    {id: 2, title: 'Muji', description: '3% cashback'},
-    {id: 3, title: 'Silk Maison', description: '6% cashback'},
-    {id: 4, title: 'Muji', description: '1% cashback'},
-    {id: 5, title: 'Muji', description: '4% cashback'},
-  ]);
+  const { data, isLoading, isError } = GetCategoriesHK();
+  const { dataBanner, isLoadingBanner, isErrorBanner } = GetBannerHK();
   const isRTL = i18next.language === 'ar';
-
-  const renderItem = ({item}: any) => (
-    <StoreCard fullname={item.title} description={item.description} />
+  const renderItem = ({ item }: any) => (
+    <StoreCard fullname={item.Category} description={item.API} />
   );
 
-  const fetchListCategorie = ({item, index}: any) => {
+  const fetchListCategorie = ({ item, index }: any) => {
     return (
       <CategoriesCard
         key={index}
@@ -73,34 +69,26 @@ const MainPage = ({navigation}) => {
       <UserCard
         fullname={'Dali Ayadi'}
         description={'+216 27 313 347 | Tunisia'}
-        image={'https://avatars.githubusercontent.com/u/46815881?v=4'}
+        image={images.profile}
       />
-      <ScrollView
-        style={{
-          height: '60%',
-          width: '100%',
-          backgroundColor: COLORS.white,
-          padding: 10,
-          alignSelf: 'center',
-          alignContent: 'center',
-        }}>
+      <ScrollView style={styles().scrollingContaier}>
         <Image
           style={styles().imageSlider}
           source={{
-            uri: 'https://www.webmonkey.com/wp-content/uploads/2020/07/purple-color-codes.webp',
+            uri: isLoadingBanner ? images.bgColor : dataBanner?.data.message,
           }}
         />
         <CustomText type={'bold'} style={styles().title}>
           {t('Featured')}
         </CustomText>
-        <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
           <ProductCard />
           <ProductCard />
         </View>
         <CustomText type={'bold'} style={styles().title}>
           {t('All Store')}
         </CustomText>
-        <View style={{transform: [{scaleX: -1}], marginBottom: 30}}>
+        <View style={{ transform: [{ scaleX: -1 }], marginBottom: 30 }}>
           <FlatList
             scrollToOverflowEnabled={true}
             onScrollToIndexFailed={error => {
@@ -108,7 +96,7 @@ const MainPage = ({navigation}) => {
                 offset: error.averageItemLength * error.index,
                 animated: false,
               });
-              setTimeout(() => {}, 100);
+              setTimeout(() => { }, 100);
             }}
             scrollEventThrottle={250}
             showsHorizontalScrollIndicator={false}
@@ -124,18 +112,18 @@ const MainPage = ({navigation}) => {
         </View>
         <SafeAreaView>
           <FlatList
-            data={Stores}
+            data={data?.data.entries}
             renderItem={renderItem}
+            initialNumToRender={3}
             keyExtractor={item => item?.id}
           />
         </SafeAreaView>
         <Pressable
-          style={{marginBottom: 20, backgroundColor: 'red'}}
+          style={{ marginBottom: 20 }}
           onPress={() => {
             navigation.replace('searchPage');
           }}>
-          
-          <CustomText>Load More</CustomText>
+          <ActivityIndicator size="large" color="#0000ff" />
         </Pressable>
       </ScrollView>
     </SafeAreaProvider>

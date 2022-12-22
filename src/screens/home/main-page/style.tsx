@@ -80,6 +80,14 @@ const styles = (fakeData?: any) =>
       marginVertical: 10,
       fontSize: fontValue(23),
     },
+    scrollingContaier: {
+      height: '60%',
+      width: '100%',
+      backgroundColor: COLORS.white,
+      padding: 10,
+      alignSelf: 'center',
+      alignContent: 'center',
+    },
   });
 
 export default styles;

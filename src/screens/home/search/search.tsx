@@ -1,7 +1,6 @@
 import React, {useRef} from 'react';
 import {useTranslation} from 'react-i18next';
 import {
-  Image,
   ScrollView,
   View,
   FlatList,
@@ -11,8 +10,6 @@ import {
 import {
   CategoriesCard,
   CustomText,
-  ProductCard,
-  UserCard,
   StoreCard,
   HeaderBack,
 } from '../../../components';
@@ -21,14 +18,12 @@ import {
   SafeAreaProvider,
   initialWindowMetrics,
 } from 'react-native-safe-area-context';
-import {useDispatch} from 'react-redux';
-import {COLORS} from '../../../config/constants';
 import i18next from 'i18next';
+import { GetCategoriesHK } from '../../../services';
 
 // @ts-ignore
 const SearchPage = ({navigation}) => {
   const {t} = useTranslation();
-  const dispatch = useDispatch();
   const [itemChosed, setItemChosed] = React.useState<number>(0);
   const flatListRef = useRef<FlatList>(null);
   const [TEMP_DATA, setTEMP_DATA] = React.useState<any>([
@@ -39,26 +34,8 @@ const SearchPage = ({navigation}) => {
     {id: 4, name: 'House'},
     {id: 5, name: 'Health & Beauty'},
   ]);
-  const [Stores, setStores] = React.useState<any>([
-    {id: 0, title: 'Amazon', description: '2% cashback'},
-    {id: 1, title: 'Silk Maison', description: '2% cashback'},
-    {id: 2, title: 'Muji', description: '3% cashback'},
-    {id: 3, title: 'Silk Maison', description: '6% cashback'},
-    {id: 4, title: 'Muji', description: '1% cashback'},
-    {id: 5, title: 'Muji', description: '4% cashback'},
-    {id: 6, title: 'Amazon', description: '2% cashback'},
-    {id: 7, title: 'Silk Maison', description: '2% cashback'},
-    {id: 8, title: 'Muji', description: '3% cashback'},
-    {id: 9, title: 'Silk Maison', description: '6% cashback'},
-    {id: 10, title: 'Muji', description: '1% cashback'},
-    {id: 11, title: 'Muji', description: '4% cashback'},
-    {id: 12, title: 'Amazon', description: '2% cashback'},
-    {id: 13, title: 'Silk Maison', description: '2% cashback'},
-    {id: 14, title: 'Muji', description: '3% cashback'},
-    {id: 15, title: 'Silk Maison', description: '6% cashback'},
-    {id: 16, title: 'Muji', description: '1% cashback'},
-    {id: 17, title: 'Muji', description: '4% cashback'},
-  ]);
+
+  const {data, isLoading, isError} = GetCategoriesHK();
   const isRTL = i18next.language === 'ar';
 
   const renderItem = ({item}: any) => (
@@ -77,21 +54,13 @@ const SearchPage = ({navigation}) => {
       />
     );
   };
-
   return (
     <SafeAreaProvider
       initialMetrics={initialWindowMetrics}
       style={styles().mainBody}>
       <HeaderBack title={t('Results (1200)')} noBack={false} />
       <ScrollView
-        style={{
-          height: '60%',
-          width: '100%',
-          backgroundColor: COLORS.white,
-          padding: 10,
-          alignSelf: 'center',
-          alignContent: 'center',
-        }}>
+        style={styles().scrollingContaier}>
         <CustomText type={'bold'} style={styles().title}>
           {t('All Store')}
         </CustomText>
@@ -119,7 +88,7 @@ const SearchPage = ({navigation}) => {
         </View>
         <SafeAreaView>
           <FlatList
-            data={Stores}
+            data={data?.data.entries}
             renderItem={renderItem}
             keyExtractor={item => item?.id}
           />

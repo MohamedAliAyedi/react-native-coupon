@@ -1,3 +1,14 @@
+
+const api = {
+  categories: "https://api.publicapis.org/entries",
+  headerImage: "https://dog.ceo/api/breeds/image/random"
+};
+
+const images = {
+  profile: "https://avatars.githubusercontent.com/u/46815881?v=4",
+  bgColor: 'https://www.webmonkey.com/wp-content/uploads/2020/07/purple-color-codes.webp'
+}
+
 const numberRegex = new RegExp('^[0-9]*$');
 const URL_REGEX = new RegExp(
   '/(ftp|http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-\\/]))?/\n',
@@ -31,4 +42,4 @@ const COLORS = {
   correctGrey: '#a3a2a7',
   orange: '#FF3399',
 };
-export {FONT, COLORS, URL_REGEX, phoneReGEX, numberRegex, gmailReGEX};
+export {FONT, COLORS, URL_REGEX, phoneReGEX, numberRegex, gmailReGEX, api, images};
