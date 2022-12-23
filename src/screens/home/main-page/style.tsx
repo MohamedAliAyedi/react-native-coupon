@@ -88,6 +88,24 @@ const styles = (fakeData?: any) =>
       alignSelf: 'center',
       alignContent: 'center',
     },
+    buttonLoading: {
+      textTransform: 'capitalize',
+      paddingHorizontal: 10,
+      backgroundColor: COLORS.primary,
+      color: COLORS.white,
+      borderRadius: 20,
+      marginTop: 10,
+      marginBottom: 30,
+      width: '50%',
+      height: heightPercentageToDP(5),
+      alignSelf: 'center',
+    },
+    textLoadingButton: {
+      paddingTop: 5,
+      color: COLORS.white,
+      textAlign: 'center',
+      justifyContent: 'center'
+    }
   });
 
 export default styles;
