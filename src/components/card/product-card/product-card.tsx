@@ -4,7 +4,7 @@ import styles from './style';
 import LinearGradient from 'react-native-linear-gradient';
 import { CustomText } from '../../shared';
 interface userCardProps {
-  onPress?: () => {};
+  onPress?: () => void;
   fullname?: string;
   description?: string;
   image?: string;

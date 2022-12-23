@@ -1,5 +1,5 @@
 export interface CategoryObject {
-  id: number;
+  id?: number;
   API?: string;
   Description?: string;
   Auth?: any;

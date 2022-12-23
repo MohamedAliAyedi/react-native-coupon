@@ -1,12 +1,6 @@
 import React, {useRef} from 'react';
 import {useTranslation} from 'react-i18next';
-import {
-  ScrollView,
-  View,
-  FlatList,
-  Platform,
-  SafeAreaView,
-} from 'react-native';
+import {ScrollView, View, FlatList, Platform, SafeAreaView, Pressable, ActivityIndicator} from 'react-native';
 import {
   CategoriesCard,
   CustomText,
@@ -19,7 +13,8 @@ import {
   initialWindowMetrics,
 } from 'react-native-safe-area-context';
 import i18next from 'i18next';
-import { GetCategoriesHK } from '../../../services';
+import {GetCategoriesHK} from '../../../services/categories';
+import { COLORS } from '../../../config/constants';
 
 // @ts-ignore
 const SearchPage = ({navigation}) => {
@@ -39,7 +34,7 @@ const SearchPage = ({navigation}) => {
   const isRTL = i18next.language === 'ar';
 
   const renderItem = ({item}: any) => (
-    <StoreCard fullname={item.title} description={item.description} />
+    <StoreCard fullname={item.Category} description={item.API} />
   );
 
   const fetchListCategorie = ({item, index}: any) => {
@@ -59,7 +54,7 @@ const SearchPage = ({navigation}) => {
       initialMetrics={initialWindowMetrics}
       style={styles().mainBody}>
       <HeaderBack title={t('Results (1200)')} noBack={false} />
-      <ScrollView
+      <ScrollView 
         style={styles().scrollingContaier}>
         <CustomText type={'bold'} style={styles().title}>
           {t('All Store')}
@@ -88,11 +83,16 @@ const SearchPage = ({navigation}) => {
         </View>
         <SafeAreaView>
           <FlatList
-            data={data?.data.entries}
+            data={data}
             renderItem={renderItem}
-            keyExtractor={item => item?.id}
+            keyExtractor={(item, index) => `${index}_`}
           />
         </SafeAreaView>
+        <Pressable
+          style={{marginBottom: 20}}
+          onPress={() => {}}>
+          <ActivityIndicator size="large" color={COLORS.primary}  />
+        </Pressable>
       </ScrollView>
     </SafeAreaProvider>
   );

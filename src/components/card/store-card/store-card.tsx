@@ -6,7 +6,7 @@ import { CustomText } from '../../shared';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { COLORS } from '../../../config/constants';
 interface userCardProps {
-  onPress?: () => {};
+  onPress?: () => void;
   fullname?: string;
   description?: string;
   image?: string;

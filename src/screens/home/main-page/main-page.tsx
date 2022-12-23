@@ -1,8 +1,8 @@
-import React, { useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import { GetCategoriesHK } from '../../../services';
-import { GetBannerHK } from '../../../services';
-import { images } from '../../../config/constants';
+import React, {useRef} from 'react';
+import {useTranslation} from 'react-i18next';
+import {GetCategoriesHK} from '../../../services/categories';
+import {GetBannerHK} from '../../../services/ads';
+import {images} from '../../../config/constants';
 import {
   Image,
   ScrollView,
@@ -25,31 +25,37 @@ import {
   SafeAreaProvider,
   initialWindowMetrics,
 } from 'react-native-safe-area-context';
-import { useDispatch } from 'react-redux';
+import {useDispatch} from 'react-redux';
 import i18next from 'i18next';
 
 // @ts-ignore
-const MainPage = ({ navigation }) => {
-  const { t } = useTranslation();
+const MainPage = ({navigation}) => {
+  const {t} = useTranslation();
   const dispatch = useDispatch();
   const [itemChosed, setItemChosed] = React.useState<number>(0);
   const flatListRef = useRef<FlatList>(null);
   const [TEMP_DATA, setTEMP_DATA] = React.useState<any>([
-    { id: 0, name: 'All' },
-    { id: 1, name: 'Fashion' },
-    { id: 2, name: 'Health & Beauty' },
-    { id: 3, name: 'Electronics' },
-    { id: 4, name: 'House' },
-    { id: 5, name: 'Health & Beauty' },
+    {id: 0, name: 'All'},
+    {id: 1, name: 'Fashion'},
+    {id: 2, name: 'Health & Beauty'},
+    {id: 3, name: 'Electronics'},
+    {id: 4, name: 'House'},
+    {id: 5, name: 'Health & Beauty'},
   ]);
-  const { data, isLoading, isError } = GetCategoriesHK();
-  const { dataBanner, isLoadingBanner, isErrorBanner } = GetBannerHK();
+  const {data, isLoading, isError} = GetCategoriesHK();
+  const {dataBanner, isLoadingBanner, isErrorBanner} = GetBannerHK();
   const isRTL = i18next.language === 'ar';
-  const renderItem = ({ item }: any) => (
-    <StoreCard fullname={item.Category} description={item.API} />
+  const renderItem = ({item}: any) => (
+    <StoreCard
+      fullname={item.Category}
+      description={item.API}
+      onPress={() => {
+        navigation.replace('searchPage');
+      }}
+    />
   );
 
-  const fetchListCategorie = ({ item, index }: any) => {
+  const fetchListCategorie = ({item, index}: any) => {
     return (
       <CategoriesCard
         key={index}
@@ -75,20 +81,20 @@ const MainPage = ({ navigation }) => {
         <Image
           style={styles().imageSlider}
           source={{
-            uri: isLoadingBanner ? images.bgColor : dataBanner?.data.message,
+            uri: isLoadingBanner ? images.bgColor : dataBanner?.message,
           }}
         />
         <CustomText type={'bold'} style={styles().title}>
           {t('Featured')}
         </CustomText>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+        <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
           <ProductCard />
           <ProductCard />
         </View>
         <CustomText type={'bold'} style={styles().title}>
           {t('All Store')}
         </CustomText>
-        <View style={{ transform: [{ scaleX: -1 }], marginBottom: 30 }}>
+        <View style={{transform: [{scaleX: -1}], marginBottom: 30}}>
           <FlatList
             scrollToOverflowEnabled={true}
             onScrollToIndexFailed={error => {
@@ -96,7 +102,7 @@ const MainPage = ({ navigation }) => {
                 offset: error.averageItemLength * error.index,
                 animated: false,
               });
-              setTimeout(() => { }, 100);
+              setTimeout(() => {}, 100);
             }}
             scrollEventThrottle={250}
             showsHorizontalScrollIndicator={false}
@@ -106,24 +112,24 @@ const MainPage = ({ navigation }) => {
             inverted={!isRTL}
             renderItem={fetchListCategorie}
             decelerationRate={'normal'}
-            keyExtractor={(item, index) => index?.toString()}
+            keyExtractor={(item, index) => `${index}`}
             removeClippedSubviews={Platform.OS === 'ios' ? false : true}
           />
         </View>
         <SafeAreaView>
           <FlatList
-            data={data?.data.entries}
+            data={data?.slice(0,5)}
             renderItem={renderItem}
             initialNumToRender={3}
-            keyExtractor={item => item?.id}
+            keyExtractor={(item, index) => `c_${index}`}
           />
         </SafeAreaView>
         <Pressable
-          style={{ marginBottom: 20 }}
+          style={styles().buttonLoading}
           onPress={() => {
             navigation.replace('searchPage');
           }}>
-          <ActivityIndicator size="large" color="#0000ff" />
+          <CustomText style={styles().textLoadingButton}>{t(`Load More`)}</CustomText>
         </Pressable>
       </ScrollView>
     </SafeAreaProvider>
